@@ -22,7 +22,7 @@ class PageController extends Controller
     public function getCrawlPage()
     {
         $param =[];
-        $param['tables'] = $this->crawl->all();
+        $param['tables'] = $this->crawl->getAll();
         return view('layouts.crawl',$param);
     }
 }

@@ -10,5 +10,14 @@ namespace App\Repositories\Interfaces;
 
 interface RepositoriesInterface
 {
-    public function all();
+
+    public function getAll();
+
+    public function getById($id);
+
+    public function create($attribute);
+
+    public function update($id, array $attribute);
+
+    public function delete($id);
 }

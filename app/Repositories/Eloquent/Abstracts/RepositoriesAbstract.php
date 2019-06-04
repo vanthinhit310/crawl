@@ -7,9 +7,10 @@
  */
 
 namespace App\Repositories\Eloquent\Abstracts;
-use Illuminate\Database\Eloquent\Model;
 
 use App\Repositories\Interfaces\RepositoriesInterface;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 
 abstract class RepositoriesAbstract implements RepositoriesInterface
 {
@@ -24,9 +25,42 @@ abstract class RepositoriesAbstract implements RepositoriesInterface
     {
         $this->model = $model;
     }
-    public function all()
+
+    public function getAll()
     {
-        // TODO: Implement all() method.
+        // TODO: Implement getAll() method.
         return $this->model->all();
+    }
+
+    public function getById($id)
+    {
+        // TODO: Implement getById() method.
+        return $this->model->findOrFail($id);
+    }
+
+    public function create($attribute)
+    {
+        // TODO: Implement create() method.
+        return $this->model->create($attribute);
+    }
+
+    public function update($id, array $attribute)
+    {
+        // TODO: Implement update() method.
+        try {
+            $object = $this->model->findOrFail($id);
+            if (isset($object)) {
+                return $this->model->update($attribute);
+            }
+        } catch (ModelNotFoundException $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function delete($id)
+    {
+        // TODO: Implement delete() method.
+        $this->getById($id)->delete();
+        return true;
     }
 }

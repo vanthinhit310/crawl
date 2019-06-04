@@ -29,6 +29,4 @@ class PageRepository extends RepositoriesAbstract implements PageInterface
     {
         $this->model = $model;
     }
-
-
 }
