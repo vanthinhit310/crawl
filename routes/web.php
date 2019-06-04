@@ -11,6 +11,22 @@
 |
 */
 
+use Illuminate\Support\Facades\Route;
+
 Route::get('/', function () {
     return view('welcome');
+});
+Route::group(['prefix'=>'crawl'],function() {
+   Route::get('countries',[
+       'uses' => 'CrawlController@crawlCountries'
+   ]);
+    Route::get('cities',[
+        'uses' => 'CrawlController@crawlCities'
+    ]);
+});
+Route::group(['prefix'=>'page'],function() {
+    Route::get('list-crawl',[
+        'uses' => 'PageController@getCrawlPage'
+    ]);
+
 });

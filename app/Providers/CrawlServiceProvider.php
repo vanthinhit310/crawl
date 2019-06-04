@@ -1,13 +1,19 @@
 <?php
+/**
+ * Created by PhpStorm.
+ * User: vanth
+ * Date: 6/4/2019
+ * Time: 10:13 AM
+ */
 
 namespace App\Providers;
 
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Schema;
+
+use App\Repositories\Eloquent\CrawlerRepository;
+use App\Repositories\Interfaces\MainInterface;
 use Illuminate\Support\ServiceProvider;
 
-class AppServiceProvider extends ServiceProvider
+class CrawlServiceProvider extends ServiceProvider
 {
     /**
      * Register any application services.
@@ -17,6 +23,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         //
+        $this->app->bind(MainInterface::class,CrawlerRepository::class);
     }
 
     /**
@@ -27,9 +34,5 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         //
-        Schema::defaultStringLength(191);
-        DB::listen(function ($query) {
-            Log::info($query->sql, $query->bindings, $query->time);
-        });
     }
 }
