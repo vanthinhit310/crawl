@@ -2,22 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Repositories\Eloquent\CrawlerRepository;
-use Illuminate\Http\Request;
+use App\Repositories\Interfaces\Page\PageInterface;
 
+/**
+ * @property PageInterface crawl
+ */
 class PageController extends Controller
 {
-    //
+    private $crawl;
+
+    public function __construct(PageInterface $crawl)
+    {
+        $this->crawl = $crawl;
+    }
+
     /**
-     * @param CrawlerRepository $crawlerRepository
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function getCrawlPage(CrawlerRepository $crawlerRepository)
+    public function getCrawlPage()
     {
         $param =[];
-        /** @var TYPE_NAME $crawlerRepository */
-        $param['table'] = $crawlerRepository->all();
-        dd($param['table']);
+        $param['tables'] = $this->crawl->all();
         return view('layouts.crawl',$param);
     }
 }

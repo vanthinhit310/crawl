@@ -11,8 +11,8 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 
 class duskSpiderTest extends DuskTestCase
 {
-    protected static $domain = 'mp3.zing.vn';
-    protected static $startUrl = 'https://mp3.zing.vn/';
+    protected static $domain = 'zingmp3.vn';
+    protected static $startUrl = 'https://zingmp3.vn/zing-chart-tuan/Bai-hat-Viet-Nam/IWZ9Z08I.html';
     public function setUp(): void{
         parent::setUp();
         $this->artisan('migrate:fresh');
@@ -44,9 +44,9 @@ class duskSpiderTest extends DuskTestCase
         //Visit URL
         $browser->visit($currentUrl->url);
         //Get Links and Save to DB if Valid
-        $linkElements = $browser->driver->findElements(WebDriverBy::tagName('a'));
+        $linkElements = $browser->driver->findElements(WebDriverBy::tagName('div'));
         foreach($linkElements as $element){
-            $href = $element->getAttribute('href');
+            $href = $element->getText();
             $href = $this->trimUrl($href);
             if($this->isValidUrl($href)){
                 //var_dump($href);

@@ -6,7 +6,7 @@ include ('../app/crawl/simple_html_dom.php');
 
 use App\Models\CrCity;
 use App\Models\CrCountry;
-use App\Repositories\Eloquent\CrawlerRepository;
+use App\Repositories\Eloquent\PageRepository;
 use Illuminate\Support\Str;
 class CrawlController extends Controller
 {
@@ -27,6 +27,6 @@ class CrawlController extends Controller
 
     public function crawlCities()
     {
-        dd(get_class_methods(CrawlerRepository::class));
+        dd(get_class_methods(PageRepository::class));
     }
 }

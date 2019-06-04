@@ -8,13 +8,12 @@
 
 namespace App\Repositories\Eloquent;
 
-
 use App\Page;
-use App\Repositories\Abstracts\AbstractEloquentRepository;
-use App\Repositories\Interfaces\MainInterface;
+use App\Repositories\Eloquent\Abstracts\RepositoriesAbstract;
+use App\Repositories\Interfaces\Page\PageInterface;
 use Illuminate\Database\Eloquent\Model;
 
-class CrawlerRepository extends AbstractEloquentRepository implements MainInterface
+class PageRepository extends RepositoriesAbstract implements PageInterface
 {
 
     /**
@@ -30,5 +29,6 @@ class CrawlerRepository extends AbstractEloquentRepository implements MainInterf
     {
         $this->model = $model;
     }
+
 
 }
